@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Helpers;
-use App\Config\Config;
 
-require_once 'App/Config/config.php';
-/**
- * Description of DBConnetion
- *
- * @author Anouar SOUID
- */
-class DBConnetion {
+require_once '../../vendor/autoload.php';
+require_once '../Config/config.php';
+
+class DbConnection {
+
     protected static $instance = null;
     //# retourner l'instance en cours
     public static function instance() {
@@ -17,7 +14,7 @@ class DBConnetion {
             try {
                 self::$instance = new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
                 self::$instance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            } catch (PDOException $e) {
+            } catch (\PDOException $e) {
                 die($e->getMessage());
             }
         }
@@ -33,7 +30,7 @@ class DBConnetion {
             else
                 $pre->execute();
             return $pre->fetchAll(\PDO::FETCH_OBJ);
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             die($e->getMessage());
         }
     }

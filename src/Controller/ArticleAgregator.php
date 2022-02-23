@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Controller;
+require_once '../../vendor/autoload.php';
 use App\Dao\ArticleDao;
 use App\Service\RssAgregator;
-require_once 'App\Dao\ArticleDao.php';
-require_once 'App\Service\RssAgregator.php';
+
 
 class ArticleAgregator {
 
